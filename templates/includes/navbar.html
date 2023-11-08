@@ -8,13 +8,29 @@
 
 <header class="header">
 	<h1 class="logo"><a href="/">Recipe Share</a></h1>
+
+<form action="{% url 'all_recipes' %}">
+	<button class="btn btn-primary my-2 my-sm-0" type="submit">All Recipes</button>
+</form>
+
+<div class="dropdown">
+	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+		Categories
+	</button>
+	<ul class="dropdown-menu">
+		{% for category in links %}
+	  <li><a href="{% url 'recipes_by_category' category.slug %}">{{category.category_name}}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+
 <form class="form-inline">
 	<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 	<button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
 </form>
-	<ul class="main-nav">
-		
 
+
+	<ul class="main-nav">
 		{% if user.is_authenticated %}
 		<li><h4>Hello {{user.first_name | title}}</h4></li>
 		<li><a href="accounts/logout">Logout</a></li>

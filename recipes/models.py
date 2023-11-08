@@ -1,4 +1,5 @@
 from django.db import models
+from category.models import Category
 
 # Create your models here.
 
@@ -17,8 +18,13 @@ class Recipes(models.Model):
     nutrition = models.CharField(max_length=1000, blank=True)
     timing = models.CharField(max_length=1000, blank=True, null=True)
     img_src = models.URLField(max_length=1000, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
     #created_date = models.DateTimeField(auto_now_add=True)
     #modified_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'recipe'
+        verbose_name_plural = 'recipes'
 
     def __str__(self):
         return self.recipe_name

@@ -3,6 +3,6 @@ from .models import Recipes
 
 # Register your models here.
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('recipe_name', 'rating')
+    list_display = ('recipe_name','category', 'rating',)
 
 admin.site.register(Recipes, RecipeAdmin)
