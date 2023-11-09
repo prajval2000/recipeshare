@@ -9,6 +9,8 @@
 <header class="header">
 	<h1 class="logo"><a href="/">Recipe Share</a></h1>
 
+
+
 <form action="{% url 'all_recipes' %}">
 	<button class="btn btn-primary my-2 my-sm-0" type="submit">All Recipes</button>
 </form>
@@ -32,11 +34,11 @@
 
 	<ul class="main-nav">
 		{% if user.is_authenticated %}
-		<li><h4>Hello {{user.first_name | title}}</h4></li>
-		<li><a href="accounts/logout">Logout</a></li>
+		<li><a href="{% url 'profile' %}">Hello {{user.first_name | title}}</a></li>
+		<li><a href="{% url 'logout' %}">Logout</a></li>
 		{% else %}
-		<li><a href="accounts/register">Register</a></li>
-		<li><a href="accounts/login">Login</a></li>
+		<li><a href="{% url 'register' %}">Register</a></li>
+		<li><a href="{% url 'login' %}">Login</a></li>
 		{% endif %}
 	</ul>
 </header> 
