@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile = models.CharField(blank=True, max_length=10)
     address_line_1 = models.CharField(blank=True, max_length=100)
     address_line_2 = models.CharField(blank=True, max_length=100)
     profile_picture = models.ImageField(blank=True, upload_to='userprofile')

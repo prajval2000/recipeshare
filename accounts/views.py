@@ -58,3 +58,13 @@ def profile(request):
         'userprofile': userprofile,
     }
     return render(request, 'accounts/profile.html', context)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        pass
+    else:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        context ={
+            'userprofile': userprofile,
+        }
+        return render(request, 'accounts/edit_profile.html', context)
