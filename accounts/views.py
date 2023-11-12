@@ -1,6 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages,auth
+from .models import UserProfile
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -52,4 +53,8 @@ def logout(request):
     return redirect('/')
 
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+    context ={
+        'userprofile': userprofile,
+    }
+    return render(request, 'accounts/profile.html', context)
