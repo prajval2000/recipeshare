@@ -62,10 +62,10 @@ def profile(request):
 
 def edit_profile(request):
     userprofile = get_object_or_404(UserProfile, user=request.user)
-    userrecipes = get_object_or_404(UserRecipe,  user=request.user)
+    
     context ={
         'userprofile': userprofile,
-        'userrecipes': userrecipes,
+        
     }
     if request.method == 'POST':
         first_name      = request.POST['first_name']
