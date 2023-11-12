@@ -2,15 +2,16 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages,auth
 from .models import UserProfile
+from recipes.models import UserRecipe
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
+        first_name          = request.POST['first_name']
+        last_name           = request.POST['last_name']
+        username            = request.POST['username']
+        email               = request.POST['email']
+        password            = request.POST['password']
+        confirm_password    = request.POST['confirm_password']
 
         if User.objects.filter(username=username).exists():
             messages.info(request,'username taken')
@@ -61,39 +62,43 @@ def profile(request):
 
 def edit_profile(request):
     userprofile = get_object_or_404(UserProfile, user=request.user)
+    userrecipes = get_object_or_404(UserRecipe,  user=request.user)
     context ={
         'userprofile': userprofile,
+        'userrecipes': userrecipes,
     }
     if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        mobile = request.POST['mobile']
-        address_line_1 = request.POST['address_line_1']
-        address_line_2 = request.POST['address_line_2']
-        city = request.POST['city']
-        state = request.POST['state']
-        country = request.POST['country']
+        first_name      = request.POST['first_name']
+        last_name       = request.POST['last_name']
+        username        = request.POST['username']
+        email           = request.POST['email']
+        mobile          = request.POST['mobile']
+        address_line_1  = request.POST['address_line_1']
+        address_line_2  = request.POST['address_line_2']
+        city            = request.POST['city']
+        state           = request.POST['state']
+        country         = request.POST['country']
 
         user = User.objects.get(id=userprofile.user_id)
 
         user.first_name = first_name
-        user.last_name = last_name
-        user.username = username
-        user.email = email
+        user.last_name  = last_name
+        user.username   = username
+        user.email      = email
 
-        userprofile.mobile = mobile
-        userprofile.address_line_1 = address_line_1
-        userprofile.address_line_2 = address_line_2
-        userprofile.city = city
-        userprofile.state = state
-        userprofile.country = country
+        userprofile.mobile          = mobile
+        userprofile.address_line_1  = address_line_1
+        userprofile.address_line_2  = address_line_2
+        userprofile.city            = city
+        userprofile.state           = state
+        userprofile.country         = country
         
         user.save()
         userprofile.save()
 
 
-        return redirect('edit_profile')
+        return redirect('profile')
     else:
         return render(request, 'accounts/edit_profile.html', context)
+    
+

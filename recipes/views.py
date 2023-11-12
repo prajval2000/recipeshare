@@ -41,3 +41,6 @@ def recipe_detail(request,id):
         'similar': similar_recipes,
     }
     return render(request, 'recipe/recipe_detail.html', context)
+
+def upload_recipe(request):
+    return render(request, 'recipe/upload_recipe.html')

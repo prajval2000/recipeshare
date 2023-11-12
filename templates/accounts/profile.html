@@ -42,8 +42,8 @@
                         {% endif %}
                       </p>
                       <p class="text-muted font-size-sm">{{ userprofile.full_address }}</p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <a href="{% url 'upload_recipe' %}"><button class="btn btn-outline-success">Upload recipes</button></a>
+                      <a href="{% url 'logout' %}"><button class="btn btn-outline-danger" >Log Out</button></a>
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="{% url 'edit_profile' %}">Edit</a>
+                      <a class="btn btn-info " target="__blank" href="{% url 'edit_profile' %}">Edit Profile</a>
                     </div>
                   </div>
                 </div>
