@@ -60,11 +60,40 @@ def profile(request):
     return render(request, 'accounts/profile.html', context)
 
 def edit_profile(request):
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+    context ={
+        'userprofile': userprofile,
+    }
     if request.method == 'POST':
-        pass
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        mobile = request.POST['mobile']
+        address_line_1 = request.POST['address_line_1']
+        address_line_2 = request.POST['address_line_2']
+        city = request.POST['city']
+        state = request.POST['state']
+        country = request.POST['country']
+
+        user = User.objects.get(id=userprofile.user_id)
+
+        user.first_name = first_name
+        user.last_name = last_name
+        user.username = username
+        user.email = email
+
+        userprofile.mobile = mobile
+        userprofile.address_line_1 = address_line_1
+        userprofile.address_line_2 = address_line_2
+        userprofile.city = city
+        userprofile.state = state
+        userprofile.country = country
+        
+        user.save()
+        userprofile.save()
+
+
+        return redirect('edit_profile')
     else:
-        userprofile = get_object_or_404(UserProfile, user=request.user)
-        context ={
-            'userprofile': userprofile,
-        }
         return render(request, 'accounts/edit_profile.html', context)
