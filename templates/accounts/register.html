@@ -2,110 +2,100 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock %}
 
 {% block content %}
+
+<!--new-->
 <form action="register" method="post">
-    {% csrf_token %}
+  {% csrf_token %}
 
-<!-- Section: Design Block -->
-<section class="text-center">
-    <!-- Background image -->
-    <div class="p-5 bg-image" style="
-          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
-          height: 300px;
-          "></div>
-    <!-- Background image -->
-  
-    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
-          margin-top: -100px;
-          background: hsla(0, 0%, 100%, 0.8);
-          backdrop-filter: blur(30px);
-          ">
-      <div class="card-body py-5 px-md-5">
-  
-        <div class="row d-flex justify-content-center">
+<div class="container">
+  <div class="main-body">
+      <div class="row justify-content-between mt-4">
+          
           <div class="col-lg-8">
-            <h2 class="fw-bold mb-5">Sign up now</h2>
-            <form>
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" name="first_name" id="form3Example1" class="form-control" />
-                    <label class="form-label" for="form3Example1">First name</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" name="last_name" id="form3Example2" class="form-control" />
-                    <label class="form-label" for="form3Example2">Last name</label>
-                  </div>
-                </div>
-              </div>
+              <div class="card">
+                  <div class="card-body">
 
-              <!--username-->
-              <div class="form-outline mb-4">
-                <div class="form-outline">
-                  <input type="text" name="username" id="username" class="form-control" />
-                  <label class="form-label" for="username">username</label>
-                </div>
-              </div>
-  
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" name="email" id="form3Example3" class="form-control" />
-                <label class="form-label" for="form3Example3">Email address</label>
-              </div>
-  
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" name="password" id="form3Example4" class="form-control" />
-                <label class="form-label" for="form3Example4">Password</label>
-              </div>
+                      
 
-              <!-- Password confirm -->
-              <div class="form-outline mb-4">
-                <input type="password" name="confirm_password" id="form3Example5" class="form-control" />
-                <label class="form-label" for="form3Example5">Confirm password</label>
+                      <div class="row mb-3">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">Userame</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                              <input type="text" class="form-control"  name="username">
+                          </div>
+                      </div>
+
+                      <div class="row mb-3">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">First Name</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                              <input type="text" class="form-control"  name="first_name">
+                          </div>
+                      </div>
+
+                      <div class="row mb-3">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">Last Name</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                              <input type="text" class="form-control"  name="last_name">
+                          </div>
+                      </div>
+
+                      <div class="row mb-3">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">Email</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                              <input type="text" class="form-control"  name="email">
+                          </div>
+                      </div>
+
+                      
+
+                      <div class="row mb-3">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">Passward</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                              <input type="text" class="form-control"  name="password">
+                          </div>
+                      </div>
+
+                      <div class="row mb-3">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">Confirm Passward</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                              <input type="text" class="form-control"  name="confirm_password">
+                          </div>
+                      </div>
+
+
+                      
+
+                      <div class="row">
+                          <div class="col-sm-3"></div>
+                          <div class="col-sm-9 text-secondary">
+                              <button type="submit" class="btn btn-primary mb-4">REGISTER</button>
+                          </div>
+                      </div>
+
+                  </div>
               </div>
-  
               
-  
-              <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block mb-4">
-                Sign up
-              </button>
-  
-              <!-- Register buttons -->
-              <div class="text-center">
-                <p>or sign up with:</p>
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-  
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-google"></i>
-                </button>
-  
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-twitter"></i>
-                </button>
-  
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-github"></i>
-                </button>
-              </div>
-            </form>
           </div>
-        </div>
       </div>
-    </div>
-  </section>
-  <!-- Section: Design Block -->
+  </div>
+</div>
 
 </form>
+
 
 <div>
     {% for message in messages %}

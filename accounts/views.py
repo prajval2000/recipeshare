@@ -25,7 +25,10 @@ def register(request):
             if password==confirm_password:
                 user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
                 user.save()
-                return redirect('login')
+                userprofile = UserProfile.objects.create(user_id=user.pk)
+                userprofile.save()
+                auth.login(request,user)
+                return redirect('/')
             else:
                 messages.info(request,'password does not match')
                 return redirect('register')
