@@ -183,14 +183,22 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                        <img src="{{recipe.img_src.url}}" class="img-fluid">
+                        <img src="{{recipe.img_src.url}}" class="img-fluid" 
+                        style="
+                        height: 200px;
+                        width:320px;
+                        border-radius: 20px;
+                        ">
                         <h4 style = "text-align: center;">{{recipe.recipe_name}}</h4>
                         <h4 style = "text-align: center;">{{recipe.category}}</h4>
+                        <a href="#">read more -></a>
                         <br/><br/>
                     </div>
                   </div>
                 </div>
                 {% endfor %}
+
+                
 
               </div>
               <!-- recipes card end-->

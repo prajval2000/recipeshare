@@ -83,3 +83,20 @@ def upload_recipe(request):
         return redirect('profile')
     else:
         return render(request, 'recipe/upload_recipe.html')
+    
+
+def user_recipes(request, category_slug=None):
+    categories = None
+    recipes = None
+
+    if category_slug != None:
+        categories = get_object_or_404(Category, slug=category_slug)
+        recipes = UserRecipe.objects.filter(category=categories)
+    else:
+        recipes = UserRecipe.objects.all()
+    
+    context={
+        'recipes' : recipes
+    }
+
+    return render(request, 'recipe/user_recipes.html', context)
