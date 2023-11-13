@@ -25,7 +25,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    {% if userprofile.profile_picture == BLANK %}
+                    {% if userprofile.profile_picture == '' %}
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     {% else %}
                     <img src="/media/{{ userprofile.profile_picture }}" alt="Admin" class="rounded-circle" width="150">
@@ -183,7 +183,7 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                        <img src="{{recipe.img_src}}">
+                        <img src="{{recipe.img_src.url}}" class="img-fluid">
                         <h4 style = "text-align: center;">{{recipe.recipe_name}}</h4>
                         <h4 style = "text-align: center;">{{recipe.category}}</h4>
                         <br/><br/>

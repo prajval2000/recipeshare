@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<form action="upload_recipe" method="post">
+<form action="upload_recipe" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
 <div class="container">

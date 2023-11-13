@@ -58,8 +58,10 @@ def upload_recipe(request):
         directions          = request.POST['directions']
         cuisine_path        = request.POST['cuisine_path']
         nutrition           = request.POST['nutrition']
-        img_src             = request.POST['img_src']
+        img_src             = request.FILES['img_src']
         category_id         = request.POST['category_id']
+
+        
 
         new_recipe = UserRecipe.objects.create(
             user_id = userprofile.user_id,

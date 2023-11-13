@@ -83,6 +83,7 @@ def edit_profile(request):
         city            = request.POST['city']
         state           = request.POST['state']
         country         = request.POST['country']
+        profile_picture = request.FILES['profile_picture']
 
         user = User.objects.get(id=userprofile.user_id)
 
@@ -97,6 +98,7 @@ def edit_profile(request):
         userprofile.city            = city
         userprofile.state           = state
         userprofile.country         = country
+        userprofile.profile_picture = profile_picture
         
         user.save()
         userprofile.save()
