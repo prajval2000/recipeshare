@@ -42,8 +42,6 @@ class UserRecipe(models.Model):
     yields = models.CharField(max_length=100, blank=True, null=True)
     ingredients = models.CharField(max_length=1000, blank=True)
     directions = models.TextField(max_length=10000, blank=True)
-    rating = models.FloatField(max_length=5, blank=True)
-    url = models.URLField(max_length=1000, blank=True)
     cuisine_path = models.CharField(max_length=100, blank=True)
     nutrition = models.CharField(max_length=1000, blank=True)
     timing = models.CharField(max_length=1000, blank=True, null=True)

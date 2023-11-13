@@ -58,8 +58,10 @@ def logout(request):
 
 def profile(request):
     userprofile = get_object_or_404(UserProfile, user=request.user)
+    userrecipe = UserRecipe.objects.filter(user_id = userprofile.user_id)
     context ={
         'userprofile': userprofile,
+        'userrecipe': userrecipe,
     }
     return render(request, 'accounts/profile.html', context)
 

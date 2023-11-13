@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<form action="" method="post">
+<form action="upload_recipe" method="post">
     {% csrf_token %}
 
 <div class="container">
@@ -23,7 +23,7 @@
                                 <h6 class="mb-0">Recipe Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="" name="username">
+                                <input type="text" class="form-control" value="" name="recipe_name" required>
                             </div>
                         </div>
 
@@ -32,16 +32,16 @@
                                 <h6 class="mb-0">Prep Time</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="" name="first_name">
+                                <input type="text" class="form-control" value="" name="prep_time">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Coock Time</h6>
+                                <h6 class="mb-0">Cook Time</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="" name="last_name">
+                                <input type="text" class="form-control" value="" name="cook_time">
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                                 <h6 class="mb-0">Total Time</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="" name="email">
+                                <input type="text" class="form-control" value="" name="total_time">
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                                 <h6 class="mb-0">servings</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="{{userprofile.mobile}}" name="mobile">
+                                <input type="text" class="form-control" value="" name="servings">
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                                 <h6 class="mb-0">Yields</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="{{userprofile.address_line_1}}" name="address_line_1">
+                                <input type="text" class="form-control" value="" name="yields">
                             </div>
                         </div>
 
@@ -77,16 +77,16 @@
                                 <h6 class="mb-0">Ingredients</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="{{userprofile.address_line_2}}" name="address_line_2">
+                                <input type="text" class="form-control" value="" name="ingredients">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Direction</h6>
+                                <h6 class="mb-0">Directions</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <textarea rows="5" type="text" class="form-control" value="{{userprofile.city}}" name="city"></textarea>
+                                <textarea rows="5" type="text" class="form-control" value="" name="directions"></textarea>
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@
                                 <h6 class="mb-0">Cuisine Path</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="{{userprofile.country}}" name="country">
+                                <input type="text" class="form-control" name="cuisine_path" >
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
                                 <h6 class="mb-0">Nutrition</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="{{userprofile.country}}" name="country">
+                                <input type="text" class="form-control" name="nutrition" >
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                    <input type="file" class="custom-file-input" id="validatedCustomFile" name="img_src" required>
                                     <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                                 </div>
                             </div>
@@ -125,9 +125,9 @@
                                 <h6 class="mb-0">Category</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <select class="form-control">
+                                <select class="form-control" name="category_id">
                                     {% for category in links %}
-                                    <option>{{category.category_name}}</option>
+                                    <option value="{{category.id}}">{{category.category_name}}</option>
                                     {% endfor %}
                                 </select>                            
                             </div>
@@ -136,7 +136,7 @@
                         <div class="row">
                             <div class="col-sm-3"></div>
                             <div class="col-sm-9 text-secondary">
-                                <button type="button" class="btn btn-primary mb-4">UPLOAD RECIPE</button>
+                                <button type="submit" class="btn btn-primary mb-4">UPLOAD RECIPE</button>
                             </div>
                         </div>
 

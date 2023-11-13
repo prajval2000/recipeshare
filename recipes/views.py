@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Recipes
+from django.shortcuts import render, get_object_or_404,redirect
+from .models import Recipes, UserRecipe
+from accounts.models import UserProfile
 from category.models import Category
+from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Create your views here.
@@ -43,4 +45,39 @@ def recipe_detail(request,id):
     return render(request, 'recipe/recipe_detail.html', context)
 
 def upload_recipe(request):
-    return render(request, 'recipe/upload_recipe.html')
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == 'POST':
+        recipe_name         = request.POST['recipe_name']
+        prep_time           = request.POST['prep_time']
+        cook_time           = request.POST['cook_time']
+        total_time          = request.POST['total_time']
+        servings            = request.POST['servings']
+        yields              = request.POST['yields']
+        ingredients         = request.POST['ingredients']
+        directions          = request.POST['directions']
+        cuisine_path        = request.POST['cuisine_path']
+        nutrition           = request.POST['nutrition']
+        img_src             = request.POST['img_src']
+        category_id         = request.POST['category_id']
+
+        new_recipe = UserRecipe.objects.create(
+            user_id = userprofile.user_id,
+            recipe_name = recipe_name,
+            prep_time = prep_time,
+            cook_time = cook_time,
+            total_time= total_time,
+            servings= servings,
+            yields = yields,
+            ingredients = ingredients,
+            directions = directions,
+            cuisine_path = cuisine_path,
+            nutrition= nutrition,
+            img_src = img_src,
+            category_id = category_id,
+        )
+        new_recipe.save()
+
+        return redirect('profile')
+    else:
+        return render(request, 'recipe/upload_recipe.html')
