@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<!------------------------------------------------------------------------------->
+  
+  <!-- content -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row gx-5">
+        <aside class="col-lg-6">
+          <div class="border rounded-4 mb-3 d-flex justify-content-center">
+              <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{recipe.img_src.url}}" />
+          </div>
+          <!--
+          <div class="d-flex justify-content-center mb-3">
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp" />
+            </a>
+            <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp" class="item-thumb">
+              <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp" />
+            </a>
+          </div> -->
+          <!-- thumbs-wrap.// -->
+          <!-- gallery-wrap .end// -->
+        </aside>
+        <main class="col-lg-6">
+          <div class="ps-lg-3">
+            <h4 class="title text-dark" style="font-size: xx-large;">
+                {{recipe.recipe_name}}
+            </h4>
+            <div class="d-flex flex-row my-3">
+              <div class="text-warning mb-1 me-2">
+                <i class="fa fa-beat fa-star{% if recipe.rating < 0.5 %}-o{% elif recipe.rating >= 0.5 and recipe.rating < 1 %}-half {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-beat fa-star{% if recipe.rating < 1.5 %}-o{% elif recipe.rating >= 1.5 and recipe.rating < 2 %}-half {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-beat fa-star{% if recipe.rating < 2.5 %}-o{% elif recipe.rating >= 2.5 and recipe.rating < 3 %}-half {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-beat fa-star{% if recipe.rating < 3.5 %}-o{% elif recipe.rating >= 3.5 and recipe.rating < 4 %}-half {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-beat fa-star{% if recipe.rating < 4.5 %}-o{% elif recipe.rating >= 4.5 and recipe.rating < 5 %}-half {% endif %}" aria-hidden="true"></i>
+                <span class="ms-1">
+                    {{recipe.rating}}
+                </span>
+              </div>
+              
+              <span class="text-muted"><i class="fa-solid fa-thumbs-up fa-bounce"></i>154</span>
+              <span class="text-success ms-2">likes</span>
+            </div>
+        <!--
+            <div class="mb-3">
+              <span class="h5">$75.00</span>
+              <span class="text-muted">/per box</span>
+            </div>-->
+  
+            <p style="font-size: large; color:chocolate">
+                {{recipe.cuisine_path}}
+            </p>
+            <hr/>
+            <br/>
+  
+            <div class="row" style="font-size:medium;">
+              <dt class="col-3">Prep time: </dt>
+              <dd class="col-9">{{recipe.prep_time}}</dd>
+  
+              <dt class="col-3">Cook time: </dt>
+              <dd class="col-9">{{recipe.cook_time}}</dd>
+  
+              <dt class="col-3">Total time</dt>
+              <dd class="col-9">{{recipe.total_time}}</dd>
+  
+              <dt class="col-3">Servings</dt>
+              <dd class="col-9">{{recipe.servings}}</dd>
+
+              <dt class="col-3">Yield</dt>
+              <dd class="col-9">{{recipe.yields}}</dd>
+            </div>
+            
+            </div>
+        </main>
+      </div>
+    </div>
+  </section>
+  <!-- content -->
+  
+  <section class="bg-light border-top py-4">
+    <div class="container">
+      <div class="row gx-4">
+        <div class="col-lg-8 mb-4">
+          <div class="border rounded-2 px-3 py-2 bg-white">
+
+            <!-- Pills navs -->
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+              <li class="nav-item d-flex" role="presentation">
+                <a onclick="direction()" class="nav-link d-flex align-items-center justify-content-center w-100 active" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab" aria-controls="ex1-pills-1" aria-selected="true">Directions</a>
+              </li>
+              <li class="nav-item d-flex" role="presentation">
+                <a onclick="nutrition()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab" aria-controls="ex1-pills-2" aria-selected="false">Nutritional values:</a>
+              </li>
+              <li class="nav-item d-flex" role="presentation">
+                <a onclick="ingredient()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab" aria-controls="ex1-pills-3" aria-selected="false">Ingredients:</a>
+              </li>
+              <li class="nav-item d-flex" role="presentation">
+                <a onclick="link()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab" aria-controls="ex1-pills-4" aria-selected="false">Link</a>
+              </li>
+            </ul>
+            <!-- Pills navs -->
+  
+            <!-- Pills content -->
+            <div class="tab-content" id="ex1-content">
+              <div class="tab-pane active mb-2" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                <h3>Directions:</h3>
+                <p>{{recipe.directions}}</p> 
+              </div>
+
+              <div class="tab-pane fade mb-2" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                <h3>Nutritional values:</h3>
+                <ol>
+                    {% for nutrition in nutritions %}
+                        <li>{{ nutrition }}</li>
+                    {% endfor %}
+                </ol>
+              </div>
+
+              <div class="tab-pane fade mb-2" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                <h3>Ingredients:</h3>
+                <ul>
+                    {% for ingredient in ingredients %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+              </div>
+
+              <div class="tab-pane fade mb-2" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
+                <a href="{{recipe.url}}"><h3>Link</h3></a>
+              </div>
+            </div>
+            <!-- Pills content -->
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="px-0 border rounded-2 shadow-0">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Other recipes by {{userprofile.user.first_name}}</h5>
+
+                {% for recipe in other_recipes_by_user %}
+                <div class="d-flex mb-3">
+                  <a href="{% url 'user_recipe_detail' recipe.id %}" class="me-3">
+                    <img src="{{recipe.img_src.url}}" style="width: 120px; height: 96px;" class="img-md img-thumbnail" />
+                  </a>
+                  <div class="info">
+                    <a href="{% url 'user_recipe_detail' recipe.id %}" class="nav-link mb-1">
+                      {{recipe.recipe_name}}
+                    </a>
+
+                    <div class="d-flex flex-row my-3">
+                      <div class="text-warning mb-1 me-2">
+                        <i class="fa fa-beat fa-star{% if recipe.rating < 0.5 %}-o{% elif recipe.rating >= 0.5 and recipe.rating < 1 %}-half {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-beat fa-star{% if recipe.rating < 1.5 %}-o{% elif recipe.rating >= 1.5 and recipe.rating < 2 %}-half {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-beat fa-star{% if recipe.rating < 2.5 %}-o{% elif recipe.rating >= 2.5 and recipe.rating < 3 %}-half {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-beat fa-star{% if recipe.rating < 3.5 %}-o{% elif recipe.rating >= 3.5 and recipe.rating < 4 %}-half {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-beat fa-star{% if recipe.rating < 4.5 %}-o{% elif recipe.rating >= 4.5 and recipe.rating < 5 %}-half {% endif %}" aria-hidden="true"></i>
+                        <span class="ms-1">
+                          <strong class="text-dark"> {{recipe.rating}}</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %} 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    var tab1 = document.getElementById("ex1-tab-1");
+    var tab2 = document.getElementById("ex1-tab-2");
+    var tab3 = document.getElementById("ex1-tab-3");
+    var tab4 = document.getElementById("ex1-tab-4");
+    var content1 = document.getElementById("ex1-pills-1");
+    var content2 = document.getElementById("ex1-pills-2");
+    var content3 = document.getElementById("ex1-pills-3");
+    var content4 = document.getElementById("ex1-pills-4");
+
+    function direction(){
+        tab1.classList.toggle('active');
+        content1.classList.toggle('fade');
+        content1.classList.toggle('active');
+    }
+    function nutrition(){
+        tab2.classList.toggle('active');
+        content2.classList.toggle('fade');
+        content2.classList.toggle('active');
+    }
+    function ingredient(){
+        tab3.classList.toggle('active');
+        content3.classList.toggle('fade');
+        content3.classList.toggle('active');
+    }
+    function link(){
+        tab4.classList.toggle('active');
+        content4.classList.toggle('fade');
+        content4.classList.toggle('active');
+    }
+  </script>
+
+  
+
+{% endblock %}

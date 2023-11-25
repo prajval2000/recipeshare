@@ -100,3 +100,23 @@ def user_recipes(request, category_slug=None):
     }
 
     return render(request, 'recipe/user_recipes.html', context)
+
+def user_recipe_detail(request,id):
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+    recipe = UserRecipe.objects.get(id=id)
+
+    other_recips = UserRecipe.objects.filter(user_id=userprofile.user_id)
+    # for recipes in other_recips:
+    #     if recipes.id == id:
+    #         other_recips.remove()
+
+    ingredients_list = recipe.ingredients.split(',')
+    nutritions_list = recipe.nutrition.split(',')
+    context = {
+        'recipe': recipe,
+        'ingredients': ingredients_list,
+        'nutritions': nutritions_list,
+        'userprofile': userprofile,
+        'other_recipes_by_user': other_recips,
+    }
+    return render(request, 'recipe/user_recipe_detail.html', context)

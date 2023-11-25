@@ -3,7 +3,7 @@ from .models import Recipes, UserRecipe
 
 # Register your models here.
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('recipe_name','category', 'rating',)
+    list_display = ('recipe_name','category', 'rating','total_time')
 
 class UserRecipeAdmin(admin.ModelAdmin):
     list_display = ('recipe_name','category',)

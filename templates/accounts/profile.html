@@ -191,7 +191,7 @@
                         ">
                         <h4 style = "text-align: center;">{{recipe.recipe_name}}</h4>
                         <h4 style = "text-align: center;">{{recipe.category}}</h4>
-                        <a href="#">read more -></a>
+                        <a href="{% url 'user_recipe_detail' recipe.id %}">read more -></a>
                         <br/><br/>
                     </div>
                   </div>
