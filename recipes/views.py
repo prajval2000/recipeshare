@@ -4,6 +4,7 @@ from accounts.models import UserProfile
 from category.models import Category
 from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 
 # Create your views here.
 def all_recipes(request, category_slug=None):
@@ -120,3 +121,20 @@ def user_recipe_detail(request,id):
         'other_recipes_by_user': other_recips,
     }
     return render(request, 'recipe/user_recipe_detail.html', context)
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            recipes = Recipes.objects.order_by('-rating').filter(Q(recipe_name__icontains=keyword) | Q(ingredients__icontains=keyword))
+            recipes_count = recipes.count()
+
+    paginator = Paginator(recipes,15)
+    page = request.GET.get('page')
+    paged_recipes = paginator.get_page(page)
+    context={
+        'recipes': paged_recipes,
+        'recipes_count': recipes_count,
+        'keyword': keyword,
+    }
+    return render(request, 'recipe/all_recipes.html', context)
