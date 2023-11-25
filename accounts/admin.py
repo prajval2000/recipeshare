@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile
+from .models import UserProfile,ShoppingList
 from django.utils.html import format_html
 
 
@@ -10,4 +10,8 @@ class UserProfileAdmin(admin.ModelAdmin):
     # thumbnail.short_description = 'Profile Picture'
     list_display = ( 'user', 'city', 'state', 'country')
 
+class ShoppingListAdmin(admin.ModelAdmin):
+    list_display = ('list_item','created_date')
+
+admin.site.register(ShoppingList, ShoppingListAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)

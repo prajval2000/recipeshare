@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages,auth
-from .models import UserProfile
+from .models import UserProfile, ShoppingList
 from recipes.models import UserRecipe
 # Create your views here.
 def register(request):
@@ -59,9 +59,11 @@ def logout(request):
 def profile(request):
     userprofile = get_object_or_404(UserProfile, user=request.user)
     userrecipe = UserRecipe.objects.filter(user_id = userprofile.user_id)
+    shoppinglist = ShoppingList.objects.filter(user_id = userprofile.user_id)
     context ={
         'userprofile': userprofile,
         'userrecipe': userrecipe,
+        'shoppinglist': shoppinglist,
     }
     return render(request, 'accounts/profile.html', context)
 
@@ -108,4 +110,17 @@ def edit_profile(request):
     else:
         return render(request, 'accounts/edit_profile.html', context)
     
-
+def additem(request):
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+    item = request.POST['item']
+    new_item = ShoppingList.objects.create(
+        list_item=item,
+        user_id=userprofile.user_id,
+    )
+    new_item.save()
+    return redirect('profile')
+    
+def deleteitem(request,pk):
+    item = get_object_or_404(ShoppingList,pk=pk)
+    item.delete()
+    return redirect('profile')

@@ -36,19 +36,10 @@
                 {{recipe.recipe_name}}
             </h4>
             <div class="d-flex flex-row my-3">
-              <div class="text-warning mb-1 me-2">
-                <i class="fa fa-beat fa-star{% if recipe.rating < 0.5 %}-o{% elif recipe.rating >= 0.5 and recipe.rating < 1 %}-half {% endif %}" aria-hidden="true"></i>
-                <i class="fa fa-beat fa-star{% if recipe.rating < 1.5 %}-o{% elif recipe.rating >= 1.5 and recipe.rating < 2 %}-half {% endif %}" aria-hidden="true"></i>
-                <i class="fa fa-beat fa-star{% if recipe.rating < 2.5 %}-o{% elif recipe.rating >= 2.5 and recipe.rating < 3 %}-half {% endif %}" aria-hidden="true"></i>
-                <i class="fa fa-beat fa-star{% if recipe.rating < 3.5 %}-o{% elif recipe.rating >= 3.5 and recipe.rating < 4 %}-half {% endif %}" aria-hidden="true"></i>
-                <i class="fa fa-beat fa-star{% if recipe.rating < 4.5 %}-o{% elif recipe.rating >= 4.5 and recipe.rating < 5 %}-half {% endif %}" aria-hidden="true"></i>
-                <span class="ms-1">
-                    {{recipe.rating}}
-                </span>
-              </div>
               
-              <span class="text-muted"><i class="fa-solid fa-thumbs-up fa-bounce"></i>154</span>
-              <span class="text-success ms-2">likes</span>
+              
+              <span class="text-success ms-2">uploaded by: </span>
+              <span class="text-muted">{{userprofile.user.first_name}}</span>
             </div>
         <!--
             <div class="mb-3">
@@ -103,9 +94,7 @@
               <li class="nav-item d-flex" role="presentation">
                 <a onclick="ingredient()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab" aria-controls="ex1-pills-3" aria-selected="false">Ingredients:</a>
               </li>
-              <li class="nav-item d-flex" role="presentation">
-                <a onclick="link()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab" aria-controls="ex1-pills-4" aria-selected="false">Link</a>
-              </li>
+              
             </ul>
             <!-- Pills navs -->
   
@@ -134,9 +123,7 @@
                 </ul>
               </div>
 
-              <div class="tab-pane fade mb-2" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
-                <a href="{{recipe.url}}"><h3>Link</h3></a>
-              </div>
+              
             </div>
             <!-- Pills content -->
 

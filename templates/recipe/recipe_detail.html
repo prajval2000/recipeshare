@@ -47,8 +47,7 @@
                 </span>
               </div>
               
-              <span class="text-muted"><i class="fa-solid fa-thumbs-up fa-bounce"></i>154</span>
-              <span class="text-success ms-2">likes</span>
+              <span class="text-success ms-2">Dataset Recipe</span>
             </div>
         <!--
             <div class="mb-3">
@@ -103,9 +102,7 @@
               <li class="nav-item d-flex" role="presentation">
                 <a onclick="ingredient()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab" aria-controls="ex1-pills-3" aria-selected="false">Ingredients:</a>
               </li>
-              <li class="nav-item d-flex" role="presentation">
-                <a onclick="link()" class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab" aria-controls="ex1-pills-4" aria-selected="false">Link</a>
-              </li>
+              
             </ul>
             <!-- Pills navs -->
   
@@ -118,7 +115,6 @@
 
               <div class="tab-pane fade mb-2" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                 <h3>Nutritional values:</h3>
-                <ol>{{recipe.nutrition}}</ol>
                 <ol>
                     {% for nutrition in nutritions %}
                         <li>{{ nutrition }}</li>
@@ -135,9 +131,7 @@
                 </ul>
               </div>
 
-              <div class="tab-pane fade mb-2" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
-                <a href="{{recipe.url}}"><h3>Link</h3></a>
-              </div>
+              
             </div>
             <!-- Pills content -->
 
